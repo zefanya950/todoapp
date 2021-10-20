@@ -11,6 +11,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import java.util.*
 import kotlin.coroutines.CoroutineContext
 
 class ListTodoViewModel(application: Application):AndroidViewModel(application),CoroutineScope {
@@ -28,6 +29,14 @@ class ListTodoViewModel(application: Application):AndroidViewModel(application),
         launch{
             val db = buildDB(getApplication())
             db.todoDao().deleteTodo(todo)
+            todoLD.value = db.todoDao().selectAllTodo()
+        }
+    }
+
+    fun updateTodoDone(uuid:Int){
+        launch {
+            val db = buildDB(getApplication())
+            db.todoDao().updateTodoDone(uuid)
             todoLD.value = db.todoDao().selectAllTodo()
         }
     }
