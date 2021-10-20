@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.room.Room
 import com.ubaya.todoapp.model.Todo
 import com.ubaya.todoapp.model.TodoDatabase
+import com.ubaya.todoapp.util.buildDB
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -18,14 +19,14 @@ class ListTodoViewModel(application: Application):AndroidViewModel(application),
 
     fun refresh(){
         launch{
-            val db = Room.databaseBuilder(getApplication(),TodoDatabase::class.java,"tododb").build()
+            val db = buildDB(getApplication())
             todoLD.value = db.todoDao().selectAllTodo()
         }
     }
 
     fun clearTask(todo:Todo){
         launch{
-            val db = Room.databaseBuilder(getApplication(),TodoDatabase::class.java,"tododb").build()
+            val db = buildDB(getApplication())
             db.todoDao().deleteTodo(todo)
             todoLD.value = db.todoDao().selectAllTodo()
         }
