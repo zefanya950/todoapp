@@ -20,8 +20,8 @@ class TodoListFragment : Fragment() {
 
     private lateinit var viewModel:ListTodoViewModel
     private var todoListAdapter:TodoListAdapter = TodoListAdapter(arrayListOf(), { item -> doClick(item) })
-    fun doClick(item:Int){
-        viewModel.updateTodoDone(item)
+    fun doClick(item:Todo){
+        viewModel.updateTodoDone(item.uuid)
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

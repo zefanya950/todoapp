@@ -11,4 +11,6 @@
     <string name="highpriority">High Priority</string>
     <string name="mediumpriority">Medium Priority</string>
     <string name="lowpriority">Low Priority</string>
+    <string name="edittodo">Edit Todo</string>
+    <string name="savechanges">Save Changes</string>
 </resources>
